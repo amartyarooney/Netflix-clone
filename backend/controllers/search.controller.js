@@ -16,7 +16,7 @@ export async function searchPerson(req,res){
         $push:{
             searchHistory:{
                 id: response.results[0].id,
-                image: response.results[0].profile.path,
+                image: response.results[0].profile_path,
                 title:response.results[0].name,
                 searchType:"person",
                 createdAt: new Date(),
@@ -64,8 +64,9 @@ export async function searchTv(req,res){
             res.status(404).send(null);
         }
         await User.findByIdAndUpdate(req.user._id,{
-            searchHistory:{
+            
             $push :{
+                searchHistory:{
                 id : response.results[0].id,
                 image:response.results[0].poster_path,
                 title: response.results[0].name,
@@ -79,4 +80,28 @@ export async function searchTv(req,res){
         res.status(404).json({success:false, message: error})
     }
 
+}
+
+
+export async function getSearchHistory(req,res){
+    try {
+        res.status(200).json({success:true, content:req.user.searchHistory});
+    } catch (error) {
+        res.status(500).json({success:false, message:"Server Error"});
+    }
+
+}
+
+
+export async function removeItemFromSearchHistory(req,res){
+    let {id} = req.params;
+    id = parseInt(id);
+    try {
+        await User.findByIdAndUpdate(req.user._id,{
+            $pull:{searchHistory:{id:id}},
+        });
+        res.status(200).json({success:true, message:"item deleted"});
+    } catch (error) {
+        res.status(500).json({success:false, message:error});
+    }
 }
