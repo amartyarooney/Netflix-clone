@@ -3,6 +3,7 @@ import SignupPage from "./pages/SignupPage"
 import HomePage from "./pages/home/HomePage"
 import LoginPage from "./pages/LoginPage"
 import Footer from "./components/Footer"
+import { Toaster } from "react-hot-toast"
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
       <Route path='/login' element={<LoginPage />} />
     </Routes>
     <Footer />
+    <Toaster/>
     </>
   )
 }
