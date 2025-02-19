@@ -27,6 +27,9 @@ export async  function signup(req,res) {
         if(exisitingEmailByUsername){
             return res.status(400).json({success:false, message: "username already exists"});
         }
+        if (password.length < 6) {
+			return res.status(400).json({ success: false, message: "Password must be at least 6 characters" });
+		}
     
     const PROFILE_PICS = ["/avatar1.png", "/avatar2.png", "/avatar3.png"];
     const salt = await bcryptjs.genSalt(10);
