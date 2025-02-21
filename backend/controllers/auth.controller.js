@@ -62,7 +62,7 @@ export async  function signup(req,res) {
 export async function login(req,res){
     try{
         const {email, password} = req.body;
-
+        console.log(req.body);
         if(!email || !password){
             return res.status(400).json({success:false, message:"all fields are required"});
         }
@@ -71,6 +71,7 @@ export async function login(req,res){
             return res.status(404).json({success:false, message:"invalid user or password"});
 
         }
+        console.log(user.password+" and  "+ password);
         const isPasswordCorrect = await bcryptjs.compare(password, user.password);
         if(!isPasswordCorrect){
             return res.status(404).json({success:false, message:"invalid user or password"});
