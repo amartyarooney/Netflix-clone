@@ -7,7 +7,7 @@ const LoginPage = () => {
     const [password, setPassword] = useState("");
     const {login} = useAuthStore();
 
-    const handleLogin = (e) => {
+    const handleLogin =  (e) => {
         e.preventDefault();
         login({email, password});
     }

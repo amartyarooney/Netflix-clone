@@ -41,12 +41,10 @@ export async  function signup(req,res) {
         username:username,
         password:hashPassword
     });
-    console.log("hersdfsdeew");
     generateTokenAndSetCookie(newUser._id, res);
     console.log("hereew");
     await newUser.save();  
     
-    console.log("her3223eew");
     res.status(201).json({sucess: true, user:{
         ...newUser._doc,
         password: "",
@@ -69,7 +67,6 @@ export async function login(req,res){
         const user = await User.findOne({email:email});
         if(!user){
             return res.status(404).json({success:false, message:"invalid user or password"});
-
         }
         console.log(user.password+" and  "+ password);
         const isPasswordCorrect = await bcryptjs.compare(password, user.password);
