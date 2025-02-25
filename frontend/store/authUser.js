@@ -47,6 +47,7 @@ export const useAuthStore = create((set) => ({
             set({user:response.data.user, isCheckingAuth:false});
         } catch (error) {
             set({isCheckingAuth:false,user:null});
+            error
             // toast.error(error.response.data.message || "An Error Occured");
         }
     },
