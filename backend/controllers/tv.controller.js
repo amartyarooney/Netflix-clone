@@ -2,8 +2,9 @@ import { fetchFromTMDB } from "../services/tmdb.services.js";
 
 export async function getTrendingTv(req,res){
     try{    
-        const trendingTv = await fetchFromTMDB("https://api.themoviedb.org/3/trending/tv/day?language=en-US");
-        res.status(200).json({success: true, trendingTv:trendingTv});
+        const data = await fetchFromTMDB("https://api.themoviedb.org/3/trending/tv/day?language=en-US");
+        const randomTv = data.results[Math.floor(Math.random()* data.results.length)];
+        res.status(200).json({success: true, content:randomTv});
     }catch(error){
         res.status(404).json({success:false, error:error});
     }
