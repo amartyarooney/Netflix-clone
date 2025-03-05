@@ -11,20 +11,23 @@ const MovieSlider = ({category}) => {
     const formattedContentType = contentType === "movie" ? "Movies" : "TV shows";
     useEffect(()=> {
         const getContent = async () => {
-            const res = await axios.get(`/api/v1/${contentType}/${category}`)
+            const res = await axios.get(`/api/v1/${contentType}/${category}`);
             setContent(res.data.content);
         }
         getContent();
     },[contentType, category])
   return (  <div className=' bg-black text-white relative px-5 md:px-20'>
-      <h2>{formattedCategoryName} {formattedContentType}</h2>
-      <div className='flex space-x-4'>
+      <h2 className='mb-4 text-2xl font-bold'>{formattedCategoryName} {formattedContentType}</h2>
+      <div className='flex space-x-4 overflow-x-scroll'>
         {content.map((item) => (
             <Link to={`/watch/${item.id}`} className='min-w-[250px] relative group' key={item.id}>
                 <div className='rounded-lg overflow-hidden'>
                     <img src={SMALL_IMG_BASE_URL + item.backdrop_path} alt="Movie image" 
                         className='transition-transform duration-300 ease-in-out group-hover:scale-125' />
                 </div>
+                <p className='mt-2 text-center '>
+                    {item.title || item.name}
+                </p>
             </Link>
         ))}
       </div>
