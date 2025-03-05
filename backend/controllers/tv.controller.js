@@ -49,7 +49,7 @@ export async function getTvByCategory(req,res){
         const {category} = req.params;
         console.log("cate: " + category)
         const tvByCategory = await fetchFromTMDB(`https://api.themoviedb.org/3/tv/${category}?language=en-US&page=1`);
-        res.status(200).json({success:true, tvByCategory:tvByCategory});
+        res.status(200).json({success:true, content:tvByCategory});
     }catch(error){
         res.status(404).json({success: false, error:error});
     }

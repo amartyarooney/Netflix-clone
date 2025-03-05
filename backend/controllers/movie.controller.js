@@ -55,7 +55,7 @@ export async function getMoviesByCategory(req,res){
     try{
         const {id} = req.params;
         const moviesBycategory = await fetchFromTMDB(`https://api.themoviedb.org/3/movie/popular?language=en-US&page=1`);
-        res.status(200).json({success :true, moviesBycategory:moviesBycategory});
+        res.status(200).json({success :true, content:moviesBycategory});
     }catch(error){
         res.status(500).json({success:fail,message:error});
     }
