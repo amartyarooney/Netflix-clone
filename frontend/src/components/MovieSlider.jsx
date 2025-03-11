@@ -23,13 +23,13 @@ const MovieSlider = ({category}) => {
 
     const scrollLeft = () => {
         if(sliderRef.current) {
-            sliderRef.current.scrollBy({left: -sliderRef.current.offsetWidth, behaviour: 'smooth'})
+            sliderRef.current.scrollBy({left: -sliderRef.current.offsetWidth, behavior: 'smooth'})
         }
     }
 
     const scrollRight = () => {
         if(sliderRef.current) {
-            sliderRef.current.scrollBy({right: sliderRef.current.offsetWidth, behaviour: 'smooth'})
+            sliderRef.current.scrollBy({left: sliderRef.current.offsetWidth, behavior: 'smooth'})
         }
     }
 
