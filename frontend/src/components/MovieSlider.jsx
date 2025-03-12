@@ -43,7 +43,7 @@ const MovieSlider = ({category}) => {
         {formattedCategoryName} {formattedContentType}
       </h2>
 
-      <div className='flex space-x-4 overflow-x-scroll' ref={sliderRef}>
+      <div className='flex space-x-4 overflow-x-scroll scrollbar-hide' ref={sliderRef}>
         {content.map((item) => (
             <Link to={`/watch/${item.id}`} className='min-w-[250px] relative group' key={item.id}>
                 <div className='rounded-lg '>
