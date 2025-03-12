@@ -42,26 +42,7 @@ const Navbar = () => {
                 <Menu className='size-6 cursor-pointer' onClick={toggleMobileMenu } />
             </div>
         </div>
-        <div className='flex gap-2 items-center z-50'>
-            <Link to={"/search"}>
-                <Search className="size-6 cursor-pointer" />            
-            </Link>
-            <img src={user.image} alt="Avatar" className='h-8 rounded cursor-pointer' />
-              <LogOut className='size-6 cursor-pointer' onClick={logout} />
-            <div className='sm:hidden'>
-                <Menu className='size-6 cursor-pointer' onClick={toggleMobileMenu } />
-            </div>
-        </div>
-        <div className='flex gap-2 items-center z-50'>
-            <Link to={"/search"}>
-                <Search className="size-6 cursor-pointer" />            
-            </Link>
-            <img src={user.image} alt="Avatar" className='h-8 rounded cursor-pointer' />
-              <LogOut className='size-6 cursor-pointer' onClick={logout} />
-            <div className='sm:hidden'>
-                <Menu className='size-6 cursor-pointer' onClick={toggleMobileMenu } />
-            </div>
-        </div>
+        
 
         {/*mobile navbar  */}
         {isMobileMenuOpen && (  
