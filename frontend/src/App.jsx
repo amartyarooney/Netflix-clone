@@ -1,5 +1,7 @@
 import { Navigate, Route, Routes } from "react-router-dom"
 import SignupPage from "./pages/SignupPage"
+import WatchPage from "./pages/WatchPage"
+
 import HomePage from "./pages/home/HomePage"
 import LoginPage from "./pages/LoginPage"
 import Footer from "./components/Footer"
@@ -29,6 +31,8 @@ function App() {
       <Route path='/' element={<HomePage />} />
       <Route path='/login' element={!user?<LoginPage />: <Navigate to="/"/>} />
       <Route path='/signup' element={!user?<SignupPage />: <Navigate to="/"/>} />
+      <Route path='/watch/:id' element={user?<WatchPage />: <Navigate to="/"/>} />
+
     </Routes>
     <Footer />
     <Toaster/>

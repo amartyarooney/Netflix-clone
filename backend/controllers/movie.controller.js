@@ -13,11 +13,13 @@ export async function getTrendingMovie(req,res){
 export async function getMovieTrailer(req,res){
     try{
         const {id} = req.params;
-        console.log("id: "+id);
+        let trailers = {};
+        console.log("kjb: "+id);
         try{
-            const trailers = await fetchFromTMDB(`https://api.themoviedb.org/3/movie/${id}/videos?language=en-US`);
+             trailers = await fetchFromTMDB(`https://api.themoviedb.org/3/movie/${id}/videos?language=en-US`);
+            // console.log(trailers);
         }catch(error){
-            console.log("errorhere");
+            console.log("error here");
             console.log(error);
         }
         
