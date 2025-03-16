@@ -17,13 +17,13 @@ export async function getMovieTrailer(req,res){
         console.log("kjb: "+id);
         try{
              trailers = await fetchFromTMDB(`https://api.themoviedb.org/3/movie/${id}/videos?language=en-US`);
-            // console.log(trailers);
+            // console.log("kjn: ",trailers);
         }catch(error){
             console.log("error here");
             console.log(error);
         }
         
-        res.status(200).json({success: true, trailers: trailers});
+        res.status(200).json({success: true, trailers: trailers.results});
     }catch(error){
         res.status(500).json({success:false, message:error});
     }
