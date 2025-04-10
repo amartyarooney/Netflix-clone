@@ -1,6 +1,7 @@
 import {User} from '../models/user.model.js';
 import bcryptjs from "bcryptjs";
 import { generateTokenAndSetCookie } from '../utils/generateToken.js';
+import logger from '../utils/logger.js';
 export async  function signup(req,res) {
     try{
         // console.log("request: " + req);
@@ -41,8 +42,9 @@ export async  function signup(req,res) {
         username:username,
         password:hashPassword
     });
-    generateTokenAndSetCookie(newUser._id, res);
-    console.log("hereew");
+
+    const token =  generateTokenAndSetCookie(newUser._id, res);
+    logger.info("token : ", token);
     await newUser.save();  
     
     res.status(201).json({sucess: true, user:{
@@ -74,7 +76,8 @@ export async function login(req,res){
             return res.status(404).json({success:false, message:"invalid user or password"});
         }
 
-        generateTokenAndSetCookie(user._id, res);
+        const token = generateTokenAndSetCookie(user._id, res);
+        logger.info("token : ", token);
         res.status(201).json({sucess: true, user:{
             ...user._doc,
             password: "",
